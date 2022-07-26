@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.images {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+
+.imagebox {
+    display: flex;
+    flex-direction: column;
+    border: solid black 2px;
+    border-radius: 3px;
+}
+
+img {
+    width: 20vw;
+    height: 15vw;
+    padding: 1px;
+    object-fit: cover;
+}
+
+p {
+    font-size: 1.3vw;
+}

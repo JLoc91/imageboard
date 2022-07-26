@@ -3,13 +3,22 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="./style.css">
         <title>Imageboard</title>
     </head>
     <body>
         <main id="main">
-            <h1>{{heading}}</h1>
-        <p>{{ 'Hello World!' }}
-        <p>2 + 2 = {{ 2 + 2 }}
+            <h1>Latest Images</h1>
+            <br>
+            <section class="images">
+                <div class="image"
+                     v-for="image in readyData">
+                     <div class="imagebox">
+                         <img v-bind:src="image.url" alt="image.description">    
+                         <p>{{image.title}}</p>
+                     </div>
+                </div>
+            </section>
         </main>
         <script
             src="/js/app.js"
