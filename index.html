@@ -13,7 +13,7 @@
             <section class="images">
                 <div class="image"
                      v-for="image in readyData">
-                     <div class="imagebox">
+                     <div class="imagebox shadow">
                          <img v-bind:src="image.url" v-bind:alt="image.description">    
                          <p>{{image.title}}</p>
                      </div>
@@ -26,8 +26,9 @@
                       enctype="multipart/form-data"
                       @:submit="onFormSubmit"
                       @submit.prevent="onFormSubmit">
-                      <div class="form-row">
-                        <label for="photo">Please select your file</label>
+                      <div class="form-row shadow">
+                        <!-- <br>
+                        <label for="photo">Please select your file</label> -->
                         <br>
                         <input type="text" name="title" id="title">
                         <p>Title</p>
@@ -39,18 +40,21 @@
                         <p>Username</p>
                         <br>
                         <input type="file" name="photo" id="photo">
+                        <br>
+                          <input type="submit" name="Upload!" >
+                          <br>
                       </div>
-                    <!-- <input type="file" name="image"> -->
-                        <input type="submit" name="Upload!" >
                 </form>
                 <br>
                 <div class="status">{{message}}</div>
                 <div class="images">
+                    <div class="imagebox shadow">
                     <img 
                         v-for="image in images"
                         v-bind:src="image"
                         alt="an image"
                         class="image">
+                        </div>
                 </div>
         </main>
         <script

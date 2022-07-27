@@ -1,12 +1,15 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    background-color: mintcream;
 }
 
 .images {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px 10px;
 }
 
 .imagebox {
@@ -16,13 +19,42 @@
     border-radius: 3px;
 }
 
+.shadow {
+    box-shadow: 4px 10px 5px rgba(0, 0, 0, 0.726);
+}
+
 img {
-    width: 20vw;
-    height: 15vw;
+    width: 28vw;
+    height: 17vw;
     padding: 1px;
     object-fit: cover;
 }
 
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form-row {
+    background-color: rgba(27, 44, 44, 0.726);
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+input {
+    width: 20vw;
+}
+
+#photo {
+    width: 30vw;
+}
+
 p {
     font-size: 1.3vw;
+    background-color: transparent;
 }

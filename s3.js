@@ -18,9 +18,6 @@ exports.upload = (req, res, next) => {
         return res.sendStatus(500);
     }
 
-    console.log("req.file in s3.js: ", req.file);
-    console.log("req.body in s3.js: ", req.body);
-
     const { filename, mimetype, size, path } = req.file;
 
     const promise = s3
