@@ -44,18 +44,20 @@
                           <input type="submit" name="Upload!" >
                           <br>
                       </div>
-                </form>
-                <br>
+            </form>
+            <br>
+            <div class="uploaded">
                 <div class="status">{{message}}</div>
                 <div class="images">
                     <div class="imagebox shadow">
                     <img 
-                        v-for="image in images"
-                        v-bind:src="image"
-                        alt="an image"
-                        class="image">
-                        </div>
+                    v-for="image in images"
+                    v-bind:src="image"
+                    alt="an image"
+                    class="image">
+                    </div>
                 </div>
+            </div>
         </main>
         <script
             src="/js/app.js"
