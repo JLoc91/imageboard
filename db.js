@@ -15,3 +15,11 @@ const db = spicedPg(dbURL);
 module.exports.getTable = () => {
     return db.query(`select * from images`);
 };
+
+module.exports.insertImage = (data) => {
+    return db.query(
+        `insert into images (url, username, title, description)
+        values ($1, $2, $3, $4)`,
+        [data.awsurl, data.username, data.title, data.description]
+    );
+};

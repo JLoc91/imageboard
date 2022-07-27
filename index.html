@@ -14,11 +14,44 @@
                 <div class="image"
                      v-for="image in readyData">
                      <div class="imagebox">
-                         <img v-bind:src="image.url" alt="image.description">    
+                         <img v-bind:src="image.url" v-bind:alt="image.description">    
                          <p>{{image.title}}</p>
                      </div>
                 </div>
+                
             </section>
+            <br>
+            <form action="/image"
+                      method="post"
+                      enctype="multipart/form-data"
+                      @:submit="onFormSubmit"
+                      @submit.prevent="onFormSubmit">
+                      <div class="form-row">
+                        <label for="photo">Please select your file</label>
+                        <br>
+                        <input type="text" name="title" id="title">
+                        <p>Title</p>
+                        <br>
+                        <input type="text" name="description" id="description">
+                        <p>Description</p>
+                        <br>
+                        <input type="text" name="username" id="username">
+                        <p>Username</p>
+                        <br>
+                        <input type="file" name="photo" id="photo">
+                      </div>
+                    <!-- <input type="file" name="image"> -->
+                        <input type="submit" name="Upload!" >
+                </form>
+                <br>
+                <div class="status">{{message}}</div>
+                <div class="images">
+                    <img 
+                        v-for="image in images"
+                        v-bind:src="image"
+                        alt="an image"
+                        class="image">
+                </div>
         </main>
         <script
             src="/js/app.js"
