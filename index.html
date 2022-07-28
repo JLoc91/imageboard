@@ -8,13 +8,17 @@
     </head>
     <body>
         <main id="main">
-            <h1>Latest Images</h1>
+            <!-- <show-image-component v-if="checkForValue" :say-greeting="hello" @close="closeModalInApp"></show-image-component> -->
+            
+            <show-image-component v-if="imgId" :img-id-prop="imgId" @close="closeModalInApp"></show-image-component>
+
             <br>
+            <h1>Latest Images</h1>
             <section class="images">
                 <div class="image"
                      v-for="image in readyData">
                      <div class="imagebox shadow">
-                         <img v-bind:src="image.url" v-bind:alt="image.description">    
+                         <img v-bind:src="image.url" v-bind:alt="image.description" @click="showID(image.id)">    
                          <p>{{image.title}}</p>
                      </div>
                 </div>

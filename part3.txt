@@ -1,0 +1,23 @@
+
+
+    1. Getting the modal to show up
+        Needs to be a component!! Register the component with Vue in app.js. --> DONE!
+        Render the component inside #main in your index.html and render the component with its own custom tag (e.g. <my-component></my-component> --> DONE!
+        you want to have a property in Vue instance's data object that is responsible for determining whether or not the component should be onscreen. If that property is truthy, show it! Otherwise, hide it.
+            that property name should be your image id! --> DONE!
+                if the id is null or 0, then it should be hidden! --> DONE!
+                    when you click on an image, set the value of the imageId to be the id of the image you just clicked! --> DONE!
+                    if your id is a valid number, then it is truthy and because of your v-if check, your component will automatically show up. --> DONE! but doesnt mean that an actual image is shown
+
+    2. Getting the modal to render the image the user clicked on (as well as title, description, and username)
+        In the Vue instance, we will know which image was clicked on! Pass the id of the image that was clicked on to the component as a prop. --> DONE!
+            In the Vue component, use the props array to get access to the info being passed down by the parent. --> DONE!
+            in index.html, we have to pass the image id prop from the vue instance to the component as a custom attribute (i.e. :id='id') --> DONE!
+            if you pass down a prop successfully and you console.log this.PROPNAME inside your mounted function of your component that is receiving it, you should see the value!! (the id of the image) --> DONE!
+            in the mounted function of the component, make a fetch request to the server to get additional information about the image the user clicked on (url, title, description, username, created_at) --> DONE!
+            once you receive a response from the server, render the image onscreen. --> DONE!
+
+    3. Closing the modal
+        In your component, $emit an event when the user tries to close the modal (when x icon is clicked). --> DONE!
+        In your index.html, listen for that custom event, and trigger a funciton to run on app.js when the event fires --> DONE!
+        In you Vue instance (app.js), the method that run should close the modal by setting the image id to a falsey value (null or 0 is fine). --> DONE!

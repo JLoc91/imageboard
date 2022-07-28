@@ -1,12 +1,18 @@
 import * as Vue from "./vue.js";
 
+import showImageComponent from "./showImageComponent.js";
+
 const app = Vue.createApp({
     data: function () {
         return {
             readyData: [],
             images: [],
             message: "Please upload a file",
+            imgId: 0,
         };
+    },
+    components: {
+        "show-image-component": showImageComponent,
     },
     methods: {
         onFormSubmit(e) {
@@ -46,6 +52,15 @@ const app = Vue.createApp({
                         );
                     }
                 });
+        },
+        showID(id) {
+            console.log("this is the id of the clicked picture: ", id);
+            this.imgId = id;
+            console.log("this.imgId: ", this.imgId);
+        },
+        closeModalInApp() {
+            console.log("close fn in the parent is running!");
+            this.imgId = 0;
         },
     },
     mounted: function () {

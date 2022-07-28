@@ -20,6 +20,18 @@ app.get("/table", (req, res) => {
         .catch((err) => console.log("err in getTable: ", err));
 });
 
+app.get("/table/:id", (req, res) => {
+    console.log("we made it here: ");
+    console.log("req.params.id: ", req.params.id);
+    db.getImage(req.params.id)
+        .then((imageData) => {
+            console.log("imageData.rows: ", imageData.rows);
+            res.json(imageData.rows);
+            return;
+        })
+        .catch((err) => console.log("err in getTable: ", err));
+});
+
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });

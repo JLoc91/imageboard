@@ -4,12 +4,29 @@
     background-color: mintcream;
 }
 
+#closeButton {
+    background-color: black;
+    color: white;
+    border: solid white 2px;
+    width: fit-content;
+    align-self: flex-end;
+    margin-right: 1vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
 .images {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px 10px;
+}
+
+.imgComponent {
+    display: flex;
+    justify-content: center;
+    border: dotted red 2px;
 }
 
 .imagebox {
@@ -36,6 +53,11 @@ img {
     height: 17vw;
     padding: 1px;
     object-fit: cover;
+}
+
+#enlargedImage {
+    width: 35vw;
+    height: 21vw;
 }
 
 form {
@@ -65,4 +87,30 @@ input {
 p {
     font-size: 1.3vw;
     background-color: transparent;
+}
+
+#transparentCover {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(27, 44, 44, 0.568);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popUp {
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+div#popUp h2,
+div#popUp h3,
+div#popUp h4 {
+    background-color: black;
+    color: white;
 }
