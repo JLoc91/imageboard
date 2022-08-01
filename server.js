@@ -32,6 +32,18 @@ app.get("/table/:id", (req, res) => {
         .catch((err) => console.log("err in getTable: ", err));
 });
 
+app.get("/getComments/:id", (req, res) => {
+    console.log("we made it to '/getComments'");
+    console.log("req.params.id getComments: ", req.params.id);
+    db.getComments(req.params.id)
+        .then((commentData) => {
+            console.log("commentData.rows: ", commentData.rows);
+            res.json(commentData.rows);
+            return;
+        })
+        .catch((err) => console.log("err in getComments: ", err));
+});
+
 app.get("/moreImages/:lowestId", (req, res) => {
     console.log("get request for more images");
     console.log("req.params: ", req.params);
@@ -81,6 +93,40 @@ app.post("/image", uploader.single("photo"), s3.upload, (req, res) => {
     }
 });
 
+app.post("/comment", (req, res) => {
+    console.log("req.body in app.post /comment : ", req.body);
+    db.insertComment(req.body)
+        .then((result) => {
+            res.json({
+                success: true,
+                message: "Comment inserted",
+                commentData: result.rows[0],
+            });
+        })
+        .catch(() => {
+            res.json({
+                success: false,
+                message: "Inserting Comment failed",
+            });
+        });
+    // if (req.file) {
+    //     // console.log("req.file: ", req.file);
+    //     db.insertImage(req.body)
+    //         .then(() => {
+    //             res.json({
+    //                 success: true,
+    //                 message: "File uploaded. Good job! 🚀",
+    //                 file: `/${req.file.filename}`,
+    //             });
+    //         })
+    //         .catch((err) => console.log("err in insertImage: ", err));
+    // } else {
+    //     res.json({
+    //         success: false,
+    //         message: "File upload failed. 😥",
+    //     });
+    // }
+});
 // app.post("/upload.json", uploader.single("file"), s3.upload, (req, res) => {
 //     console.log("req.file: ", req.file);
 //     req.file ? res.json()

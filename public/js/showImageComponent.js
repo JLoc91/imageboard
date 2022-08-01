@@ -1,18 +1,18 @@
-// const db = require("./db.js");
+import commentComponent from "./commentComponent.js";
 
 const showImageComponent = {
     data() {
         return {
-            name: "Layla",
             num: 0,
             clickImage: [],
-            // imgId: 0,
+            // imgIdComment: 0,
         };
     },
     props: ["img-id-prop"],
     mounted() {
         console.log("our first component mounted");
-        console.log("props: ", this.imgIdProp);
+        console.log("img-id-prop: ", this.imgIdProp);
+        console.log("location.pathname: ", location.pathname);
         fetch("/table/" + this.imgIdProp)
             .then((responserows) => {
                 console.log("responserows: ", responserows);
@@ -27,7 +27,9 @@ const showImageComponent = {
             })
             .catch((err) => console.log("err in fetch in component: ", err));
     },
-
+    components: {
+        "comment-component": commentComponent,
+    },
     methods: {
         closeModalComponent: function () {
             // console.log("closeModal fn in component is running");
@@ -47,19 +49,13 @@ const showImageComponent = {
                         v-bind:alt="clickImage.description">
                     <h2>{{clickImage.title}}</h2>
                     <h3>{{clickImage.description}}</h3>
-                    <h4>Uploaded by {{clickImage.username}} on {{clickImage.created_at}}</h4>        
+                    <h4>Uploaded by {{clickImage.username}} on {{clickImage.created_at}}</h4>
+                    <br>
+                    <comment-component :img-id-prop-comment="imgIdProp"></comment-component>        
                 </div>
             </div>
         </div>
     `,
-    // template: `
-    //     <div class='imgComponent'>
-    //         <div id="enlargedImage" class="imagebox shadow">
-    //             <h1>Versuch das Bild zu rendern</h1>
-
-    //         </div>
-    //     </div>
-    // `,
 };
 
 export default showImageComponent;

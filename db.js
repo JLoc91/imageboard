@@ -22,6 +22,10 @@ module.exports.getImage = (id) => {
     return db.query(`select * from images where id=${id}`);
 };
 
+module.exports.getComments = (img_Id) => {
+    return db.query(`select * from comments where img_id=${img_Id}`);
+};
+
 module.exports.getMoreImages = (lastId) => {
     return db.query(
         `SELECT url, title, id,(
@@ -41,5 +45,13 @@ module.exports.insertImage = (data) => {
         `insert into images (url, username, title, description)
         values ($1, $2, $3, $4)`,
         [data.awsurl, data.username, data.title, data.description]
+    );
+};
+
+module.exports.insertComment = (data) => {
+    return db.query(
+        `insert into comments (comment_text, username, img_id)
+        values ($1, $2, $3) returning *`,
+        [data.comment, data.username, data.imgId]
     );
 };

@@ -7,43 +7,43 @@ Comments Component
     You'll need a new comments component (so at this point, you should have a total of 2 components for your project)
     props - pass to it the id of the image (gets it from modal)
     data should have the following:
-        comments - an array of all comments for the image
-        username - stores the value of the username input field
-        comment - stores the value of the comment input field
-    mounted - make an HTTP request to retrieve the all comments made about that particular image.
+        comments - an array of all comments for the image --> DONE!
+        username - stores the value of the username input field --> DONE!
+        comment - stores the value of the comment input field --> DONE!
+    mounted - make an HTTP request to retrieve the all comments made about that particular image. --> DONE!
     methods
         you'll need a click handler for the submit button
             when you click submit, you'll make a POST request to insert the new comment in the database
             do NOT use formData! (this is only necessary when you're sending a file along to the server). Instead, pass a body property as part of the 2nd argument to fetch.
-            upon success, you new comment should be added into the array of comments (this is what you retrieved when your comment component mounted).
+            upon success, you new comment should be added into the array of comments (this is what you retrieved when your comment component mounted). --> DONE!
 
 Templates
 
-    You'll need a new template for the new comments component
-        You'll need fields for entering a comment and for the username
-        You'll need a button to submit the comment
-        Make sure you render all comments inside your template
-    Modify the template for the modal component so that it renders the comments component inside and passes the image id to it!
+    You'll need a new template for the new comments component --> DONE!
+        You'll need fields for entering a comment and for the username--> DONE!
+        You'll need a button to submit the comment--> DONE!
+        Make sure you render all comments inside your template--> DONE!
+    Modify the template for the modal component so that it renders the comments component inside and passes the image id to it!--> DONE!
 
 Server-Side
 
 Routes
 
-    GET /comments/:imageId - this retrieves all the comments for a particular image when the comments component mounts.
-    POST /comment - this will insert a new comment into the databse
+    GET /comments/:imageId - this retrieves all the comments for a particular image when the comments component mounts. --> DONE!
+    POST /comment - this will insert a new comment into the databse --> DONE!
 
 Tables
 
-    You'll need a new comments table with the following columns
-        comment text
-        username
-        id of the image the comment belongs to
-        timestamp to capture when comment was created
+    You'll need a new comments table with the following columns--> DONE!
+        comment text--> DONE!
+        username--> DONE!
+        id of the image the comment belongs to--> DONE!
+        timestamp to capture when comment was created--> DONE!
 
 Queries
 
-    SELECT - gets all comments for a particular image
-    INSERT - adds a specific comment for an image into the database
+    SELECT - gets all comments for a particular image--> DONE!
+    INSERT - adds a specific comment for an image into the database--> DONE!
 
 
 
