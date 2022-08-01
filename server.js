@@ -32,6 +32,19 @@ app.get("/table/:id", (req, res) => {
         .catch((err) => console.log("err in getTable: ", err));
 });
 
+app.get("/moreImages/:lowestId", (req, res) => {
+    console.log("get request for more images");
+    console.log("req.params: ", req.params);
+
+    db.getMoreImages(req.params.lowestId)
+        .then((response) => {
+            console.log("response.rows in getMoreImages: ", response.rows);
+            res.json(response.rows);
+            return;
+        })
+        .catch((err) => console.log("err in getMoreImages: ", err));
+});
+
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });

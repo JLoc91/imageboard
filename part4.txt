@@ -1,0 +1,81 @@
+
+Next Steps for Pt. 4
+Client-Side
+
+Comments Component
+
+    You'll need a new comments component (so at this point, you should have a total of 2 components for your project)
+    props - pass to it the id of the image (gets it from modal)
+    data should have the following:
+        comments - an array of all comments for the image
+        username - stores the value of the username input field
+        comment - stores the value of the comment input field
+    mounted - make an HTTP request to retrieve the all comments made about that particular image.
+    methods
+        you'll need a click handler for the submit button
+            when you click submit, you'll make a POST request to insert the new comment in the database
+            do NOT use formData! (this is only necessary when you're sending a file along to the server). Instead, pass a body property as part of the 2nd argument to fetch.
+            upon success, you new comment should be added into the array of comments (this is what you retrieved when your comment component mounted).
+
+Templates
+
+    You'll need a new template for the new comments component
+        You'll need fields for entering a comment and for the username
+        You'll need a button to submit the comment
+        Make sure you render all comments inside your template
+    Modify the template for the modal component so that it renders the comments component inside and passes the image id to it!
+
+Server-Side
+
+Routes
+
+    GET /comments/:imageId - this retrieves all the comments for a particular image when the comments component mounts.
+    POST /comment - this will insert a new comment into the databse
+
+Tables
+
+    You'll need a new comments table with the following columns
+        comment text
+        username
+        id of the image the comment belongs to
+        timestamp to capture when comment was created
+
+Queries
+
+    SELECT - gets all comments for a particular image
+    INSERT - adds a specific comment for an image into the database
+
+
+
+Pagination Steps
+
+
+    1. Alter the query that gets the initial set of images to include LIMIT.
+        this will limit your select to a certain number of images (you can choose that number arbitrarily or based on your design layout). --> DONE!
+
+    2. Retrieving more images when user clicks on the More button
+
+        Find the smallest image id that is currently onscreen. --> DONE!
+
+        Make a GET request to the server and send along the smallest id. --> DONE!
+
+        When the server receives the request, run the query below to fetch the next set of results as well as the lowest id that exists in your images table. --> DONE!
+
+        SELECT url, title, id, (
+          SELECT id FROM images
+          ORDER BY id ASC
+          LIMIT 1
+        ) AS "lowestId" FROM images
+        WHERE id < $1
+        ORDER BY id DESC
+        LIMIT 10;
+
+        send the results back to Vue to render the next set of images onscreen. -->DONE!
+
+        You will not want to replace this new set of results with what already exists in Vue. --> DONE!
+
+   3. What to do when there are no more images to retrieve from the database:
+        the best solution is to check to see if the lowest id that you retrieved from the images table exists on screen. --> DONE!
+        If it does, then hide the more button. --> DONE!
+
+

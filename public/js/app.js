@@ -9,6 +9,9 @@ const app = Vue.createApp({
             images: [],
             message: "Please upload a file",
             imgId: 0,
+            idOnScreen: [],
+            lowestId: null,
+            moreButton: true,
         };
     },
     components: {
@@ -62,6 +65,36 @@ const app = Vue.createApp({
             console.log("close fn in the parent is running!");
             this.imgId = 0;
         },
+        askForMoreImages(lowestId) {
+            console.log("More button was clicked");
+            console.log("lowestId in getMoreImages: ", lowestId);
+            fetch("/moreImages/" + this.lowestId)
+                .then((responserows) => {
+                    console.log("responserows in fetch: ", responserows);
+                    return responserows.json();
+                })
+                .then((newData) => {
+                    console.log("newData: ", newData);
+                    console.log("lowestId: ", lowestId);
+                    console.log("newData[0].endId: ", newData[0].endId);
+
+                    newData.map((img) => {
+                        console.log("img: ", img);
+                        this.readyData.push(img);
+                        if (img.endId == img.id) {
+                            this.moreButton = false;
+                        }
+                    });
+                    newData.map((el) => {
+                        console.log(el.id);
+                        this.idOnScreen.push(el.id);
+                    });
+                    console.log("this.idOnScreen: ", this.idOnScreen);
+                    this.lowestId = Math.min(...this.idOnScreen);
+                    console.log(this.lowestId);
+                })
+                .catch((err) => console.log("err in fetch /moreImages: ", err));
+        },
     },
     mounted: function () {
         fetch("/table")
@@ -71,10 +104,16 @@ const app = Vue.createApp({
                 return responserows.json();
             })
             .then((readyData) => {
-                console.log("readyData: ", readyData);
+                console.log("readyData in fetch: ", readyData);
                 this.readyData = readyData;
+                readyData.map((el) => {
+                    console.log(el.id);
+                    this.idOnScreen.push(el.id);
+                });
 
-                // console.log("db.getTable(): ", db.getTable());
+                console.log("this.idOnScreen: ", this.idOnScreen);
+                this.lowestId = Math.min(...this.idOnScreen);
+                console.log(this.lowestId);
             })
             .catch((err) => console.log("err in fetch: ", err));
     },

@@ -12,18 +12,7 @@
             
             <show-image-component v-if="imgId" :img-id-prop="imgId" @close="closeModalInApp"></show-image-component>
 
-            <br>
-            <h1>Latest Images</h1>
-            <section class="images">
-                <div class="image"
-                     v-for="image in readyData">
-                     <div class="imagebox shadow">
-                         <img v-bind:src="image.url" v-bind:alt="image.description" @click="showID(image.id)">    
-                         <p>{{image.title}}</p>
-                     </div>
-                </div>
-                
-            </section>
+
             <br>
             <form action="/image"
                       method="post"
@@ -34,15 +23,18 @@
                         <!-- <br>
                         <label for="photo">Please select your file</label> -->
                         <br>
+                        <!-- maybe integrate v-model -->
                         <input type="text" name="title" id="title">
                         <p>Title</p>
                         <br>
+                        <!-- maybe integrate v-model -->
                         <input type="text" name="description" id="description">
                         <p>Description</p>
                         <br>
+                        <!-- maybe integrate v-model -->
                         <input type="text" name="username" id="username">
                         <p>Username</p>
-                        <br>
+                        <br><!-- maybe integrate v-model, change event needed -->
                         <input type="file" name="photo" id="photo">
                         <br>
                           <input type="submit" name="Upload!" >
@@ -62,6 +54,23 @@
                     </div>
                 </div>
             </div>
+                        <br>
+            <h1>Latest Images</h1>
+            <section class="images" >
+                <div class="image"
+                     v-for="image in readyData">
+                     <div class="imagebox shadow">
+                        
+                         <img v-bind:src="image.url" v-bind:alt="image.description" @click="showID(image.id)">    
+                         <p>{{image.title}}</p>
+
+                     </div>
+
+                </div>
+                                                                          <br>
+                <button v-if="moreButton" @click="askForMoreImages(lowestId)">MORE</button>
+            </section>
+
         </main>
         <script
             src="/js/app.js"

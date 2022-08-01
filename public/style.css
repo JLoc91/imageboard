@@ -19,7 +19,7 @@
 
 .images {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px 10px;
@@ -70,9 +70,11 @@ form {
 
 .form-row {
     background-color: rgba(27, 44, 44, 0.726);
-    width: 35vw;
+    width: 80vw;
+    max-height: 45px;
+    height: 3vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
