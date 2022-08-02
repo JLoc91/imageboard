@@ -12,11 +12,15 @@ const showImageComponent = {
     mounted() {
         console.log("our first component mounted");
         console.log("img-id-prop: ", this.imgIdProp);
-        console.log("location.pathname: ", location.pathname);
-        fetch("/table/" + this.imgIdProp)
+
+        fetch("/image/" + this.imgIdProp)
             .then((responserows) => {
                 console.log("responserows: ", responserows);
-
+                history.pushState(null, null, "/image/" + this.imgIdProp);
+                console.log(
+                    "location.pathname showImageComponent: ",
+                    location.pathname
+                );
                 return responserows.json();
             })
             .then((image) => {

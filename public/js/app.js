@@ -62,8 +62,9 @@ const app = Vue.createApp({
             console.log("this.imgId: ", this.imgId);
         },
         closeModalInApp() {
-            console.log("close fn in the parent is running!");
             this.imgId = 0;
+            history.pushState(null, null, "/");
+            console.log("close fn in the parent is running!");
         },
         askForMoreImages(lowestId) {
             console.log("More button was clicked");
@@ -100,7 +101,9 @@ const app = Vue.createApp({
         fetch("/table")
             .then((responserows) => {
                 console.log("responserows: ", responserows);
-
+                this.imgId = 0;
+                history.pushState(null, null, "/");
+                console.log("location.pathname: ", location.pathname);
                 return responserows.json();
             })
             .then((readyData) => {
@@ -116,6 +119,22 @@ const app = Vue.createApp({
                 console.log(this.lowestId);
             })
             .catch((err) => console.log("err in fetch: ", err));
+
+        addEventListener("popstate", (e) => {
+            console.log(location.pathname);
+            if (
+                location.pathname.indexOf("/image/") == 0 &&
+                parseInt(location.pathname.substring(7)) != NaN
+            ) {
+                this.imgId = parseInt(parseInt(location.pathname.substring(7)));
+            } else {
+                this.imgId = 0;
+            }
+
+            console.log("event triggered, this.imgId: ", this.imgId);
+            // show whatever is appropriate for the new url
+            // if you need it, e.state has the data you passed to `pushState`
+        });
     },
 });
 

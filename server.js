@@ -20,7 +20,7 @@ app.get("/table", (req, res) => {
         .catch((err) => console.log("err in getTable: ", err));
 });
 
-app.get("/table/:id", (req, res) => {
+app.get("/image/:id", (req, res) => {
     console.log("we made it here: ");
     console.log("req.params.id: ", req.params.id);
     db.getImage(req.params.id)
@@ -34,6 +34,7 @@ app.get("/table/:id", (req, res) => {
 
 app.get("/getComments/:id", (req, res) => {
     console.log("we made it to '/getComments'");
+    console.log("req.url: ", req.url);
     console.log("req.params.id getComments: ", req.params.id);
     db.getComments(req.params.id)
         .then((commentData) => {
