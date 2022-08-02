@@ -8,6 +8,7 @@ const s3 = require("./s3.js");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "uploads")));
+app.use(express.static(path.join(__dirname, "backgroundImage")));
 app.use(express.json());
 
 app.get("/table", (req, res) => {
@@ -20,12 +21,36 @@ app.get("/table", (req, res) => {
         .catch((err) => console.log("err in getTable: ", err));
 });
 
+// app.get("/image/:id", (req, res, next) => {
+//     // this.$emit("open", req.params.id);
+//     console.log("req.headers: ", req.headers["accept"].indexOf("text/html"));
+//     if (req.headers["content-type"] == "application/json") {
+//         console.log("we made it here: ");
+//         console.log("req.params.id: ", req.params.id);
+//         db.getImage(req.params.id)
+//             .then((imageData) => {
+//                 console.log("imageData.rows: ", imageData.rows);
+//                 if (imageData.rows.length == 0) {
+//                     return res.redirect("/");
+//                 }
+//                 res.json(imageData.rows);
+//                 return;
+//             })
+//             .catch((err) => console.log("err in getTable: ", err));
+//     } else {
+//         next();
+//     }
+// });
+
 app.get("/image/:id", (req, res) => {
     console.log("we made it here: ");
     console.log("req.params.id: ", req.params.id);
     db.getImage(req.params.id)
         .then((imageData) => {
             console.log("imageData.rows: ", imageData.rows);
+            if (imageData.rows.length == 0) {
+                return res.redirect("/");
+            }
             res.json(imageData.rows);
             return;
         })

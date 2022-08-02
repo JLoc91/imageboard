@@ -98,12 +98,23 @@ const app = Vue.createApp({
         },
     },
     mounted: function () {
+        console.log("location.pathname in app mounting: ", location.pathname);
+        if (
+            location.pathname.indexOf("/image/") == 0 &&
+            parseInt(location.pathname.substring(7)) != NaN
+        ) {
+            this.imgId = parseInt(parseInt(location.pathname.substring(7)));
+            console.log("this.imgId in if app mounting: ", this.imgId);
+        } else {
+            this.imgId = 0;
+            console.log("this.imgId in else app mounting: ", this.imgId);
+        }
         fetch("/table")
             .then((responserows) => {
                 console.log("responserows: ", responserows);
-                this.imgId = 0;
-                history.pushState(null, null, "/");
-                console.log("location.pathname: ", location.pathname);
+                // this.imgId = 0;
+                // history.pushState(null, null, "/");
+                // console.log("location.pathname: ", location.pathname);
                 return responserows.json();
             })
             .then((readyData) => {

@@ -1,9 +1,10 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    background-color: mintcream;
+    /* background-color: rgba(233, 240, 241, 0.85); */
     font-family: sans-serif;
     max-width: 100%;
+    color: white;
 }
 
 #closeButton {
@@ -15,6 +16,17 @@
     margin-right: 1vw;
     margin-top: 1vh;
     margin-bottom: 1vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./pexels-esther-2863547.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .images {
@@ -31,11 +43,16 @@
     border: dotted red 2px;
 }
 
+h1 {
+    margin-left: 2.5vw;
+}
+
 .imagebox {
     display: flex;
     flex-direction: column;
     border: solid black 2px;
     border-radius: 3px;
+    margin-bottom: 30px;
 }
 
 .shadow {
@@ -66,6 +83,8 @@ form {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    height: 5vh;
 }
 
 .form-row {
@@ -81,7 +100,8 @@ form {
 }
 
 input {
-    width: 20vw;
+    width: 13vw;
+    height: 1.5vw;
 }
 
 #photo {
@@ -90,7 +110,8 @@ input {
 
 p {
     font-size: 1.3vw;
-    background-color: transparent;
+    background-color: white;
+    color: black;
 }
 
 #transparentCover {
@@ -117,4 +138,13 @@ div#popUp h3,
 div#popUp h4 {
     background-color: black;
     color: white;
+}
+
+#more {
+    width: 5vh;
+    min-width: 180px;
+    height: 2vh;
+    min-height: 40px;
+    align-self: center;
+    color: black;
 }
