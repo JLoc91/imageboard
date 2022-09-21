@@ -14,7 +14,7 @@ app.use(express.json());
 app.get("/table", (req, res) => {
     db.getTable()
         .then((imageData) => {
-            console.log("imageData.rows: ", imageData.rows);
+            // console.log("imageData.rows: ", imageData.rows);
             res.json(imageData.rows);
             return;
         })
@@ -43,11 +43,10 @@ app.get("/table", (req, res) => {
 // });
 
 app.get("/image/:id", (req, res) => {
-    console.log("we made it here: ");
-    console.log("req.params.id: ", req.params.id);
+    // console.log("req.params.id: ", req.params.id);
     db.getImage(req.params.id)
         .then((imageData) => {
-            console.log("imageData.rows: ", imageData.rows);
+            // console.log("imageData.rows: ", imageData.rows);
             if (imageData.rows.length == 0) {
                 return res.redirect("/");
             }
@@ -58,12 +57,11 @@ app.get("/image/:id", (req, res) => {
 });
 
 app.get("/getComments/:id", (req, res) => {
-    console.log("we made it to '/getComments'");
-    console.log("req.url: ", req.url);
-    console.log("req.params.id getComments: ", req.params.id);
+    // console.log("req.url: ", req.url);
+    // console.log("req.params.id getComments: ", req.params.id);
     db.getComments(req.params.id)
         .then((commentData) => {
-            console.log("commentData.rows: ", commentData.rows);
+            // console.log("commentData.rows: ", commentData.rows);
             res.json(commentData.rows);
             return;
         })
@@ -71,12 +69,12 @@ app.get("/getComments/:id", (req, res) => {
 });
 
 app.get("/moreImages/:lowestId", (req, res) => {
-    console.log("get request for more images");
-    console.log("req.params: ", req.params);
+    // console.log("get request for more images");
+    // console.log("req.params: ", req.params);
 
     db.getMoreImages(req.params.lowestId)
         .then((response) => {
-            console.log("response.rows in getMoreImages: ", response.rows);
+            // console.log("response.rows in getMoreImages: ", response.rows);
             res.json(response.rows);
             return;
         })
@@ -98,8 +96,8 @@ app.post("/image", uploader.single("photo"), s3.upload, (req, res) => {
         "https://s3.amazonaws.com/spicedling/",
         req.file.filename
     );
-    console.log("req.body in app.post : ", req.body);
-    console.log("req.file in app.post : ", req.file);
+    // console.log("req.body in app.post : ", req.body);
+    // console.log("req.file in app.post : ", req.file);
     if (req.file) {
         // console.log("req.file: ", req.file);
         db.insertImage(req.body)
@@ -120,7 +118,7 @@ app.post("/image", uploader.single("photo"), s3.upload, (req, res) => {
 });
 
 app.post("/comment", (req, res) => {
-    console.log("req.body in app.post /comment : ", req.body);
+    // console.log("req.body in app.post /comment : ", req.body);
     db.insertComment(req.body)
         .then((result) => {
             res.json({

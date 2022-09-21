@@ -10,9 +10,9 @@ const commentComponent = {
 
     methods: {
         commentSubmit(e) {
-            console.log("comment form trying to submit!");
-            console.log("username: ", this.username);
-            console.log("comment: ", this.comment);
+            // console.log("comment form trying to submit!");
+            // console.log("username: ", this.username);
+            // console.log("comment: ", this.comment);
             let commentBody = {
                 username: this.username,
                 comment: this.comment,
@@ -21,7 +21,7 @@ const commentComponent = {
             // this.comments.push(commentBody);
             // console.log("this.comments after pushing: ", this.comments);
             commentBody = JSON.stringify(commentBody);
-            console.log("commentBody: ", commentBody);
+            // console.log("commentBody: ", commentBody);
             fetch("/comment", {
                 method: "post",
                 headers: { "Content-Type": "application/json" },
@@ -33,7 +33,7 @@ const commentComponent = {
                     return result.json();
                 })
                 .then((addedComment) => {
-                    console.log("addedComment:", addedComment);
+                    // console.log("addedComment:", addedComment);
                     this.comments.push(addedComment.commentData);
                     //update the view!
                     //
@@ -53,14 +53,14 @@ const commentComponent = {
         },
     },
     mounted() {
-        console.log("comment component mounted");
-        console.log("img-id-prop-comment: ", this.imgIdPropComment);
+        // console.log("comment component mounted");
+        // console.log("img-id-prop-comment: ", this.imgIdPropComment);
         fetch("/getComments/" + this.imgIdPropComment)
             .then((responserows) => {
-                console.log(
-                    "responserows in fetch/'getcomments': ",
-                    responserows
-                );
+                // console.log(
+                //     "responserows in fetch/'getcomments': ",
+                //     responserows
+                // );
 
                 return responserows.json();
             })
@@ -85,7 +85,7 @@ const commentComponent = {
             <button @click="commentSubmit">Submit</button>
             <div id="showComments" v-for="comment in comments">
                 <h3>{{comment.comment_text}}</h3>
-                <h4>{{comment.username}} on {{comment.created_at}}</h4>
+                <h4>{{comment.username}} on {{comment.created_at.slice(0,10)}} {{comment.created_at.slice(11,16)}}h</h4>
                 <br>
             </div>
         </div>

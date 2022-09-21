@@ -7,6 +7,12 @@
     color: white;
 }
 
+body {
+    background-image: url("./pexels-esther-2863547.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 #closeButton {
     background-color: black;
     color: white;
@@ -23,10 +29,10 @@ main {
     flex-direction: column;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
-    background-image: url("./pexels-esther-2863547.jpg");
+    /* height: 100vh; */
+    /* background-image: url("./pexels-esther-2863547.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 }
 
 .images {
@@ -69,8 +75,9 @@ h1 {
 
 img {
     width: 28vw;
+    max-width: 400px;
     height: 17vw;
-    padding: 1px;
+    max-height: 270px;
     object-fit: cover;
 }
 
@@ -90,6 +97,7 @@ form {
 .form-row {
     background-color: rgba(27, 44, 44, 0.726);
     width: 80vw;
+    max-width: 1200px;
     max-height: 45px;
     height: 3vw;
     display: flex;
@@ -97,15 +105,23 @@ form {
     justify-content: center;
     align-items: center;
     border-radius: 4px;
+    gap: 20px;
+}
+
+.form-row p {
+    background-color: transparent;
+    color: white;
 }
 
 input {
     width: 13vw;
     height: 1.5vw;
+    color: black;
 }
 
 #photo {
     width: 30vw;
+    color: white;
 }
 
 p {
@@ -118,7 +134,7 @@ p {
     position: absolute;
     z-index: 1;
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: rgba(27, 44, 44, 0.568);
     display: flex;
     justify-content: center;

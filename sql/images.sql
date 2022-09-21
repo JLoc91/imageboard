@@ -30,6 +30,8 @@ INSERT INTO images (url, username, title, description) VALUES (
     'That is the question.'
 );
 
+DROP TABLE IF EXISTS comments;
+
 CREATE TABLE comments(
     id SERIAL PRIMARY KEY,
     comment_text VARCHAR NOT NULL,
