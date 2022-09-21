@@ -22,6 +22,7 @@ body {
     margin-right: 1vw;
     margin-top: 1vh;
     margin-bottom: 1vh;
+    cursor: pointer;
 }
 
 main {
@@ -55,6 +56,12 @@ main {
 
 h1 {
     margin-left: 2.5vw;
+}
+
+#commentBox {
+    height: fit-content;
+    max-height: 20vh;
+    overflow-y: scroll;
 }
 
 .imagebox {
@@ -132,10 +139,11 @@ p {
     font-size: 1.3vw;
     background-color: white;
     color: black;
+    padding-left: 4px;
 }
 
 #transparentCover {
-    position: absolute;
+    position: fixed;
     z-index: 1;
     width: 100vw;
     /* height: 100vh; */
@@ -151,6 +159,7 @@ p {
     justify-content: center;
     align-items: center;
     background-color: black;
+    margin-top: 10vh;
 }
 
 div#popUp h2,

@@ -101,10 +101,12 @@ const commentComponent = {
             <br>
             <button @click="commentSubmit">Submit</button>
             <div id="error" class="red"> {{error.message}} </div>
-            <div id="showComments" v-for="comment in comments">
-                <h3>{{comment.comment_text}}</h3>
-                <h4>{{comment.username}} on {{comment.created_at.slice(0,10)}} {{comment.created_at.slice(11,16)}}h</h4>
-                <br>
+            <div id="commentBox">
+                <div id="showComments" v-for="comment in comments">
+                    <h3>{{comment.comment_text}}</h3>
+                    <h4>{{comment.username}} on {{comment.created_at.slice(0,10)}} {{comment.created_at.slice(11,16)}}h</h4>
+                    <br>
+                </div>
             </div>
         </div>
     `,
