@@ -4,6 +4,7 @@ const commentComponent = {
             comment: "",
             username: "",
             comments: [],
+            error: {},
         };
     },
     props: ["img-id-prop-comment"],
@@ -33,8 +34,17 @@ const commentComponent = {
                     return result.json();
                 })
                 .then((addedComment) => {
-                    // console.log("addedComment:", addedComment);
-                    this.comments.push(addedComment.commentData);
+                    console.log("addedComment:", addedComment);
+                    if (!addedComment.success) {
+                        console.log(addedComment.message);
+                        this.error = {
+                            render: true,
+                            message: addedComment.message,
+                        };
+                    } else {
+                        this.comments.push(addedComment.commentData);
+                        this.error = {};
+                    }
                     //update the view!
                     //
                     // console.log("serverData: ", serverData);
@@ -49,6 +59,13 @@ const commentComponent = {
                     //             serverData.file
                     //     );
                     // }
+                })
+                // .catch((error) => {
+                //     return error.json();
+                // })
+                .catch((error) => {
+                    console.log("error: ", error);
+                    console.log("error.message: ", error.message);
                 });
         },
     },
@@ -83,6 +100,7 @@ const commentComponent = {
             <p>Username</p>
             <br>
             <button @click="commentSubmit">Submit</button>
+            <div id="error" class="red"> {{error.message}} </div>
             <div id="showComments" v-for="comment in comments">
                 <h3>{{comment.comment_text}}</h3>
                 <h4>{{comment.username}} on {{comment.created_at.slice(0,10)}} {{comment.created_at.slice(11,16)}}h</h4>

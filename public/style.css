@@ -49,6 +49,10 @@ main {
     border: dotted red 2px;
 }
 
+.red {
+    color: red;
+}
+
 h1 {
     margin-left: 2.5vw;
 }

@@ -118,7 +118,13 @@ app.post("/image", uploader.single("photo"), s3.upload, (req, res) => {
 });
 
 app.post("/comment", (req, res) => {
-    // console.log("req.body in app.post /comment : ", req.body);
+    console.log("req.body in app.post /comment : ", req.body);
+    if (req.body.username == "" || req.body.comment == "") {
+        return res.json({
+            success: false,
+            message: "Username and Comment must not be empty!",
+        });
+    }
     db.insertComment(req.body)
         .then((result) => {
             res.json({
